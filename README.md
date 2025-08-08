@@ -1,8 +1,8 @@
 # React SPA + Laravel API
 
-Проект состоит из двух частей:
-- Backend на Laravel 10 (PHP 8.2.12) с API и аутентификацией через Sanctum
-- Frontend на React 18.2.0 с использованием Node.js 20.11 и npm
+Project contains of two parts:
+- Backend on Laravel 10 (PHP 8.2.12) with API and authentication via Sanctum
+- Frontend on React 18.2.0 via Node.js 20.11 & npm
 
 ---
 
@@ -40,8 +40,8 @@
 
 
 ### !Note
-If you installing this project inside some other directory check path in `frontend/src/api/axios.js` you should add your directory name to path like this baseURL: 'http://localhost/your_root_folder_name/react-spa/backend/public/api' on lines 4 and 13
-If you clone this repository not in your directory and ceep it in `htdocs` for example you can skip this
+If you install this project not in the root of the web server, but in a subfolder (for example, test-spa) you should add your subfolder's name to path like this baseURL: 'http://localhost/your_root_folder_name/react-spa/backend/public/api' on lines 4 and 13 in `frontend/src/api/axios.js`
+If not just skip this
 
 
 
