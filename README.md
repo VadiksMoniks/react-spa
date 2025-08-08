@@ -29,7 +29,7 @@
 6. run commands:
      ```php artisan key:generate
      php artisan migrate --seed
-     php artisan serve``` (or use localserver such as XAMPP/MAMP etc.)
+     php artisan serve``` (or use localserver such as XAMPP/MAMP etc.), I'm using XAMPP
 
 ### Frontend (React)
 
@@ -37,5 +37,6 @@
 2. Run command ```npm install```
 3. Run command ```npm run dev```
 4. Copy link from console (http://localhost:5173/) and open it in your browser
+
 
 
