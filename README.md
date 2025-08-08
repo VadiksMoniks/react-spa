@@ -25,8 +25,9 @@ Project contains of two parts:
 3. Rename `.env.example` or copy it to `.env`
 4. Rename in `.env` next Constants:
    ```DB_DATABASE=laravel``` to your db name for example ```DB_DATABASE=spa```
-5. Add after ```APP_URL``` nex Constant ```FRONTEND_URL=http://localhost:5173```
-6. run commands:
+    if you use not MySQL ```DB_CONNECTION=mysql``` to your db for example ```DB_CONNECTION=sqlite``
+6. Add after ```APP_URL``` nex Constant ```FRONTEND_URL=http://localhost:5173```
+7. run commands:
      ```php artisan key:generate
      php artisan migrate --seed
      php artisan serve``` (or use localserver such as XAMPP/MAMP etc.), I'm using XAMPP
@@ -42,6 +43,7 @@ Project contains of two parts:
 ### !Note
 If you install this project not in the root of the web server, but in a subfolder (for example, test-spa) you should add your subfolder's name to path like this baseURL: 'http://localhost/your_root_folder_name/react-spa/backend/public/api' on lines 4 and 13 in `frontend/src/api/axios.js`
 If not just skip this
+
 
 
 
