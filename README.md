@@ -39,4 +39,7 @@
 4. Copy link from console (http://localhost:5173/) and open it in your browser
 
 
+### !Note
+If you installing this project inside some jther directory check path in frontend/src/api/axios/js/ you should add your directory name to path like this baseURL: 'http://localhost/your_root_folder_name/react-spa/backend/public/api' on lines 4 and 13
+
 
