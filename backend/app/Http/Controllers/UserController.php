@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -18,13 +19,8 @@ class UserController extends Controller
         ]);
     }
 
-    public function register(Request $request)
+    public function register(UserRequest $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required','email', 'unique:users,email'],
-            'password' => ['required']
-        ]);
 
         $user = User::create([
             'name' => $request->name,
@@ -41,7 +37,7 @@ class UserController extends Controller
 
     }
 
-    public function login(Request $request)
+    public function login(UserRequest $request)
     {
         $request->validate([
             'email' => ['required', 'email'],
@@ -71,11 +67,8 @@ class UserController extends Controller
         return response()->json(['message' => 'Logged Out']);
     }
 
-    public function resetPassword(Request $request)
+    public function resetPassword(UserRequest $request)
     {
-        $request->validate([
-            'password' => ['required']
-        ]);
 
         $user_id = auth()->id();
         User::where('id', $user_id)->update(['password' => Hash::make($request->password)]);

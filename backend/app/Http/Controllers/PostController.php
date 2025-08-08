@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
 use App\Http\Resources\PostResource;
 use Illuminate\Http\Request;
 use App\Models\Post;
@@ -27,14 +28,8 @@ class PostController extends Controller
         ]);
     }
 
-    public function createPost(Request $request)
+    public function createPost(PostRequest $request)
     {
-        $request->validate([
-            'user_id' => ['required', 'integer'],
-            'title' => ['required', 'string', 'unique:posts,title'],
-            'content' => ['required', 'string']
-        ]);
-
         $post = Post::create([
             'user_id' => $request->user_id,
             'title' => $request->title,
@@ -42,7 +37,7 @@ class PostController extends Controller
         ]);
 
         return response()->json([
-            'message' => "post was created successfully"
+            'succes' => true,
         ], 201);
     }
 
@@ -51,13 +46,8 @@ class PostController extends Controller
         return new PostResource(Post::with('user')->findOrFail($post_id));
     }
 
-    public function updatePost(Request $request, $post_id)
+    public function updatePost(PostRequest $request, $post_id)
     {
-        $request->validate([
-            'title' => ['sometimes', 'string', 'unique:posts,title'],
-            'content' => ['sometimes', 'string']
-        ]);
-
         $user_id = auth()->id();
 
         $post = Post::where('user_id', $user_id)->where('id', $post_id)->first();
@@ -71,11 +61,11 @@ class PostController extends Controller
         $post->update($request->only(['title', 'content']));
 
         return response()->json([
-            'message' => "Post was updated successfully",
+            'success' => true,
         ]);
     }
 
-    public function deletePost(Request $request, $post_id)
+    public function deletePost($post_id)
     {
 
         $user_id = auth()->id();
@@ -89,5 +79,8 @@ class PostController extends Controller
         }
 
         $post->delete();
+        return response()->json([
+            'success' => true,
+        ]);
     }
 }

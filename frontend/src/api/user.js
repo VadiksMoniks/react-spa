@@ -17,5 +17,5 @@ export function logout(data) {
 }
 
 export function resetPassword(data) {
-  return axiosPrivateClient.post('/user/resetPassword', data);
+  return axiosPrivateClient.put('/user/resetPassword', data);
 }

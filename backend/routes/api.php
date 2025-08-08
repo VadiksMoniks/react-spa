@@ -17,18 +17,28 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['prefix' => 'posts'], function(){
+
     Route::get('/', [PostController::class, 'index']);
     Route::get('/total', [PostController::class, 'totalPosts']);
     Route::get('/{post_id}', [PostController::class, 'viewPost']);
-    Route::post('/create', [PostController::class, 'createPost'])->middleware('auth:sanctum');
-    Route::put('{post_id}/update', [PostController::class, 'updatePost'])->middleware('auth:sanctum');
-    Route::post('{post_id}/delete', [PostController::class, 'deletePost'])->middleware('auth:sanctum');
+
+    Route::middleware('auth:sanctum')->group(function(){
+        Route::post('/create', [PostController::class, 'createPost']);
+        Route::put('{post_id}/update', [PostController::class, 'updatePost']);
+        Route::post('{post_id}/delete', [PostController::class, 'deletePost']);
+    });
+
 });
 
 Route::group(['prefix' => 'user'], function(){
-    Route::get('/profile', [UserController::class, 'userProfile'])->middleware('auth:sanctum');
+    
     Route::post('/login', [UserController::class, 'login']);
     Route::post('/register', [UserController::class, 'register']);
-    Route::post('/logout', [UserController::class, 'logout'])->middleware('auth:sanctum');
-    Route::post('/resetPassword', [UserController::class, 'resetPassword'])->middleware('auth:sanctum');
+
+    Route::middleware('auth:sanctum')->group(function(){
+        Route::get('/profile', [UserController::class, 'userProfile']);    
+        Route::post('/logout', [UserController::class, 'logout']);
+        Route::put('/resetPassword', [UserController::class, 'resetPassword']);
+    });
+
 });
